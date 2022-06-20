@@ -1,6 +1,9 @@
 # DMHead
 Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detection.
 
+## ToDo
+https://github.com/choyingw/SynergyNet
+
 ## 1. Summary
 ![icon_design drawio (12)](https://user-images.githubusercontent.com/33194443/174622614-bc67a307-88df-4577-a1da-daa37c57eeb9.png)
 
