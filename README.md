@@ -45,3 +45,11 @@ https://user-images.githubusercontent.com/33194443/174620267-73c1d26f-796f-40c7-
     primaryClass={cs.CV}
 }
 ```
+```
+@INPROCEEDINGS{wu2021synergy,
+  author={Wu, Cho-Ying and Xu, Qiangeng and Neumann, Ulrich},
+  booktitle={2021 International Conference on 3D Vision (3DV)}, 
+  title={Synergy between 3DMM and 3D Landmarks for Accurate 3D Facial Geometry}, 
+  year={2021}
+}
+```
