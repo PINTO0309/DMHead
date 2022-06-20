@@ -1,5 +1,5 @@
 # DMHead
-Dual model head pose estimation. Fusion of SOTA models. 360° 6D Pose detection.
+Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detection.
 
 ## 1. Summary
 ![icon_design drawio (10)](https://user-images.githubusercontent.com/33194443/174505343-43a2c78c-c86a-4e26-810d-b1cf90965a9d.png)
