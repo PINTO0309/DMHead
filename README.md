@@ -5,7 +5,7 @@ Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detect
 ![icon_design drawio (10)](https://user-images.githubusercontent.com/33194443/174505343-43a2c78c-c86a-4e26-810d-b1cf90965a9d.png)
 
 ## 2. Atmosphere
-
+https://user-images.githubusercontent.com/33194443/174509883-36af33e1-da9c-44d5-805d-7e070e1a8912.mp4
 
 ## 3. [WIP] Benchmark
 - Trained on 300W-LP (Custom, Mask-wearing face image augmentation)
