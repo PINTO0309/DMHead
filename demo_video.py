@@ -88,14 +88,14 @@ def main(args):
         chw = np.asarray(chw / 255., dtype=np.float32)
         # hwc --> nhwc
         nchw = chw[np.newaxis, ...]
-        # Inference
+        # Inference YOLOv4
         heads = yolov4_head.run(
             None,
             input_feed = {yolov4_head_input_name: nchw}
         )[0]
 
         canvas = resized_frame.copy()
-        # ============================================================= DNHead
+        # ============================================================= DMHead
         croped_resized_frame = None
         scores = heads[:,4]
         keep_idxs = scores > 0.6
@@ -127,6 +127,7 @@ def main(args):
                 yaw = 0.0
                 pitch = 0.0
                 roll = 0.0
+                # Inference DMHead
                 outputs = dmhead.run(
                     None,
                     input_feed = {dmhead_input_name: nchw}
