@@ -1,6 +1,9 @@
 # DMHead
 Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detection.
 
+## ToDo
+https://github.com/choyingw/SynergyNet
+
 ## 1. Summary
 ![icon_design drawio (12)](https://user-images.githubusercontent.com/33194443/174622614-bc67a307-88df-4577-a1da-daa37c57eeb9.png)
 
@@ -40,5 +43,13 @@ https://user-images.githubusercontent.com/33194443/174620267-73c1d26f-796f-40c7-
     eprint={2202.12555},
     archivePrefix={arXiv},
     primaryClass={cs.CV}
+}
+```
+```
+@INPROCEEDINGS{wu2021synergy,
+  author={Wu, Cho-Ying and Xu, Qiangeng and Neumann, Ulrich},
+  booktitle={2021 International Conference on 3D Vision (3DV)}, 
+  title={Synergy between 3DMM and 3D Landmarks for Accurate 3D Facial Geometry}, 
+  year={2021}
 }
 ```
