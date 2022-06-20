@@ -47,7 +47,7 @@ def main(args):
     yolov4_head_H = yolov4_head.get_inputs()[0].shape[2]
     yolov4_head_W = yolov4_head.get_inputs()[0].shape[3]
 
-    # DNHead
+    # DMHead
     dmhead_input_name = None
     dmhead = onnxruntime.InferenceSession(
         path_or_bytes=f'dmhead_1x3x224x224.onnx',
