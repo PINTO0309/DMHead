@@ -1,9 +1,7 @@
 
-import os
 import cv2
 import argparse
 import onnxruntime
-import numba as nb
 import numpy as np
 from math import cos, sin
 

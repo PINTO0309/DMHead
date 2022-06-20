@@ -46,5 +46,3 @@ snc4onnx \
 --output_onnx_file_path dmhead_1x3x224x224.onnx
 
 onnxsim dmhead_1x3x224x224.onnx dmhead_1x3x224x224.onnx
-
-
