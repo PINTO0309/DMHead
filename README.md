@@ -7,13 +7,21 @@ Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detect
 ## 2. Atmosphere
 
 
-## 3. Model Structure
+## 3. [WIP] Benchmark
+- Trained on 300W-LP (Custom, Mask-wearing face image augmentation)
+- Test on AFLW2000
+  - June 22, 2022
+    ```
+    Yaw: 3.6129, Pitch: 5.5801, Roll: 3.8468, MAE: 4.3466
+    ```
+
+## 4. Model Structure
 - INPUTS: `Float32 [N,3,224,224]`
 - OUTPUTS: `Float32 [N,3]`, `[Yaw,Roll,Pitch]`
 
 ![pinheadpose_1x3x224x224 onnx](https://user-images.githubusercontent.com/33194443/174504855-bf03e294-c9c9-477d-9faf-07b3d0393463.png)
 
-## 4. Citation
+## 5. Citation
 ```
 @misc{https://doi.org/10.48550/arxiv.2005.10353,
     doi = {10.48550/ARXIV.2005.10353},
