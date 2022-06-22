@@ -4,6 +4,15 @@ Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detect
 ## ToDo
 https://github.com/choyingw/SynergyNet
 
+- MobileNetV2 backbone - not retrained
+
+  ![image](https://user-images.githubusercontent.com/33194443/174690800-272e5a06-c932-414f-8397-861d7d6284d0.png)
+
+  ![image](https://user-images.githubusercontent.com/33194443/174690567-4a684857-2e87-47ca-852f-525a8b318856.png)　![image](https://user-images.githubusercontent.com/33194443/174690653-af79b004-04c7-4106-ae94-23f9b1323e93.png)
+
+
+
+
 ## 1. Summary
 ![icon_design drawio (12)](https://user-images.githubusercontent.com/33194443/174622614-bc67a307-88df-4577-a1da-daa37c57eeb9.png)
 
