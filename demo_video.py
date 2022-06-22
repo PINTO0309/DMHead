@@ -40,13 +40,13 @@ def main(args):
     yolov4_head = onnxruntime.InferenceSession(
         path_or_bytes=f'yolov4_headdetection_480x640_post.onnx',
         providers=[
-            # (
-            #     'TensorrtExecutionProvider', {
-            #         'trt_engine_cache_enable': True,
-            #         'trt_engine_cache_path': '.',
-            #         'trt_fp16_enable': True,
-            #     }
-            # ),
+            (
+                'TensorrtExecutionProvider', {
+                    'trt_engine_cache_enable': True,
+                    'trt_engine_cache_path': '.',
+                    'trt_fp16_enable': True,
+                }
+            ),
             'CUDAExecutionProvider',
             'CPUExecutionProvider',
         ]
@@ -60,13 +60,13 @@ def main(args):
     dmhead = onnxruntime.InferenceSession(
         path_or_bytes=f'dmhead_Nx3x224x224.onnx',
         providers=[
-            # (
-            #     'TensorrtExecutionProvider', {
-            #         'trt_engine_cache_enable': True,
-            #         'trt_engine_cache_path': '.',
-            #         'trt_fp16_enable': True,
-            #     }
-            # ),
+            (
+                'TensorrtExecutionProvider', {
+                    'trt_engine_cache_enable': True,
+                    'trt_engine_cache_path': '.',
+                    'trt_fp16_enable': True,
+                }
+            ),
             'CUDAExecutionProvider',
             'CPUExecutionProvider',
         ]
