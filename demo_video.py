@@ -1,5 +1,6 @@
 
 import cv2
+import time
 import argparse
 import onnxruntime
 import numpy as np
@@ -39,6 +40,13 @@ def main(args):
     yolov4_head = onnxruntime.InferenceSession(
         path_or_bytes=f'yolov4_headdetection_480x640_post.onnx',
         providers=[
+            (
+                'TensorrtExecutionProvider', {
+                    'trt_engine_cache_enable': True,
+                    'trt_engine_cache_path': '.',
+                    'trt_fp16_enable': True,
+                }
+            ),
             'CUDAExecutionProvider',
             'CPUExecutionProvider',
         ]
@@ -50,8 +58,15 @@ def main(args):
     # DMHead
     dmhead_input_name = None
     dmhead = onnxruntime.InferenceSession(
-        path_or_bytes=f'dmhead_1x3x224x224.onnx',
+        path_or_bytes=f'dmhead_Nx3x224x224.onnx',
         providers=[
+            (
+                'TensorrtExecutionProvider', {
+                    'trt_engine_cache_enable': True,
+                    'trt_engine_cache_path': '.',
+                    'trt_fp16_enable': True,
+                }
+            ),
             'CUDAExecutionProvider',
             'CPUExecutionProvider',
         ]
@@ -73,6 +88,8 @@ def main(args):
     cv2.resizeWindow(WINDOWS_NAME, cap_width, cap_height)
 
     while True:
+        start = time.time()
+
         ret, frame = cap.read()
         if not ret:
             continue
@@ -102,11 +119,17 @@ def main(args):
         heads = heads[keep_idxs, :]
 
         if len(heads) > 0:
+            dmhead_inputs = []
+            heads[:, 0] = heads[:, 0] * cap_width
+            heads[:, 1] = heads[:, 1] * cap_height
+            heads[:, 2] = heads[:, 2] * cap_width
+            heads[:, 3] = heads[:, 3] * cap_height
+
             for head in heads:
-                x_min = int(head[0] * cap_width)
-                y_min = int(head[1] * cap_height)
-                x_max = int(head[2] * cap_width)
-                y_max = int(head[3] * cap_height)
+                x_min = int(head[0])
+                y_min = int(head[1])
+                x_max = int(head[2])
+                y_max = int(head[3])
 
                 # enlarge the bbox to include more background margin
                 y_min = max(0, y_min - abs(y_min - y_max) / 10)
@@ -121,23 +144,21 @@ def main(args):
                 rgb = croped_resized_frame[..., ::-1]
                 # hwc --> chw
                 chw = rgb.transpose(2, 0, 1)
-                # chw --> nchw
-                nchw = np.asarray(chw[np.newaxis, :, :, :], dtype=np.float32)
+                dmhead_inputs.append(chw)
+            # chw --> nchw
+            nchw = np.asarray(dmhead_inputs, dtype=np.float32)
 
-                yaw = 0.0
-                pitch = 0.0
-                roll = 0.0
-                # Inference DMHead
-                outputs = dmhead.run(
-                    None,
-                    input_feed = {dmhead_input_name: nchw}
-                )
-                yaw = outputs[0][0][0]
-                roll = outputs[0][0][1]
-                pitch = outputs[0][0][2]
+            yaw = 0.0
+            pitch = 0.0
+            roll = 0.0
+            # Inference DMHead
+            outputs = dmhead.run(
+                None,
+                input_feed = {dmhead_input_name: nchw}
+            )[0]
 
+            for yaw, roll, pitch in outputs:
                 yaw, pitch, roll = np.squeeze([yaw, pitch, roll])
-
                 print(f'yaw: {yaw}, pitch: {pitch}, roll: {roll}')
 
                 # BBox draw
@@ -189,6 +210,28 @@ def main(args):
                         (100, 255, 0),
                         1
                     )
+
+            time_txt = f'{(time.time()-start)*1000:.2f} ms'
+            cv2.putText(
+                canvas,
+                time_txt,
+                (20, 35),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1,
+                (255, 255, 255),
+                2,
+                cv2.LINE_AA,
+            )
+            cv2.putText(
+                canvas,
+                time_txt,
+                (20, 35),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1,
+                (0, 0, 255),
+                1,
+                cv2.LINE_AA,
+            )
 
         key = cv2.waitKey(1)
         if key == 27:  # ESC
