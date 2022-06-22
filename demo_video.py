@@ -40,13 +40,13 @@ def main(args):
     yolov4_head = onnxruntime.InferenceSession(
         path_or_bytes=f'yolov4_headdetection_480x640_post.onnx',
         providers=[
-            (
-                'TensorrtExecutionProvider', {
-                    'trt_engine_cache_enable': True,
-                    'trt_engine_cache_path': '.',
-                    'trt_fp16_enable': True,
-                }
-            ),
+            # (
+            #     'TensorrtExecutionProvider', {
+            #         'trt_engine_cache_enable': True,
+            #         'trt_engine_cache_path': '.',
+            #         'trt_fp16_enable': True,
+            #     }
+            # ),
             'CUDAExecutionProvider',
             'CPUExecutionProvider',
         ]
@@ -60,13 +60,13 @@ def main(args):
     dmhead = onnxruntime.InferenceSession(
         path_or_bytes=f'dmhead_Nx3x224x224.onnx',
         providers=[
-            (
-                'TensorrtExecutionProvider', {
-                    'trt_engine_cache_enable': True,
-                    'trt_engine_cache_path': '.',
-                    'trt_fp16_enable': True,
-                }
-            ),
+            # (
+            #     'TensorrtExecutionProvider', {
+            #         'trt_engine_cache_enable': True,
+            #         'trt_engine_cache_path': '.',
+            #         'trt_fp16_enable': True,
+            #     }
+            # ),
             'CUDAExecutionProvider',
             'CPUExecutionProvider',
         ]
@@ -120,6 +120,7 @@ def main(args):
 
         if len(heads) > 0:
             dmhead_inputs = []
+            dmhead_position = []
             heads[:, 0] = heads[:, 0] * cap_width
             heads[:, 1] = heads[:, 1] * cap_height
             heads[:, 2] = heads[:, 2] * cap_width
@@ -145,8 +146,10 @@ def main(args):
                 # hwc --> chw
                 chw = rgb.transpose(2, 0, 1)
                 dmhead_inputs.append(chw)
+                dmhead_position.append([x_min,y_min,x_max,y_max])
             # chw --> nchw
             nchw = np.asarray(dmhead_inputs, dtype=np.float32)
+            positions = np.asarray(dmhead_position, dtype=np.int32)
 
             yaw = 0.0
             pitch = 0.0
@@ -157,9 +160,11 @@ def main(args):
                 input_feed = {dmhead_input_name: nchw}
             )[0]
 
-            for yaw, roll, pitch in outputs:
+            for (yaw, roll, pitch), position in zip(outputs, positions):
                 yaw, pitch, roll = np.squeeze([yaw, pitch, roll])
                 print(f'yaw: {yaw}, pitch: {pitch}, roll: {roll}')
+
+                x_min,y_min,x_max,y_max = position
 
                 # BBox draw
                 deg_norm = 1.0 - abs(yaw / 180)
@@ -172,44 +177,43 @@ def main(args):
                     thickness=2
                 )
 
-                if abs(yaw) != 0.0:
-                    # Draw
-                    draw_axis(
-                        canvas,
-                        yaw,
-                        pitch,
-                        roll,
-                        tdx=(x_min+x_max)/2,
-                        tdy=(y_min+y_max)/2,
-                        size=abs(x_max-x_min)//2
-                    )
-                    cv2.putText(
-                        canvas,
-                        f'yaw: {np.round(yaw)}',
-                        (int(x_min), int(y_min)),
-                        cv2.FONT_HERSHEY_SIMPLEX,
-                        0.4,
-                        (100, 255, 0),
-                        1
-                    )
-                    cv2.putText(
-                        canvas,
-                        f'pitch: {np.round(pitch)}',
-                        (int(x_min), int(y_min) - 15),
-                        cv2.FONT_HERSHEY_SIMPLEX,
-                        0.4,
-                        (100, 255, 0),
-                        1
-                    )
-                    cv2.putText(
-                        canvas,
-                        f'roll: {np.round(roll)}',
-                        (int(x_min), int(y_min)-30),
-                        cv2.FONT_HERSHEY_SIMPLEX,
-                        0.4,
-                        (100, 255, 0),
-                        1
-                    )
+                # Draw
+                draw_axis(
+                    canvas,
+                    yaw,
+                    pitch,
+                    roll,
+                    tdx=(x_min+x_max)/2,
+                    tdy=(y_min+y_max)/2,
+                    size=abs(x_max-x_min)//2
+                )
+                cv2.putText(
+                    canvas,
+                    f'yaw: {np.round(yaw)}',
+                    (int(x_min), int(y_min)),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.4,
+                    (100, 255, 0),
+                    1
+                )
+                cv2.putText(
+                    canvas,
+                    f'pitch: {np.round(pitch)}',
+                    (int(x_min), int(y_min) - 15),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.4,
+                    (100, 255, 0),
+                    1
+                )
+                cv2.putText(
+                    canvas,
+                    f'roll: {np.round(roll)}',
+                    (int(x_min), int(y_min)-30),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.4,
+                    (100, 255, 0),
+                    1
+                )
 
             time_txt = f'{(time.time()-start)*1000:.2f} ms'
             cv2.putText(
