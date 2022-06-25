@@ -14,8 +14,8 @@ class Model(nn.Module):
         pitch = x[:,2,:]
         shrunk_yaw = torch.clip(
             yaw,
-            min=torch.tensor(-90.0, dtype=torch.float32),
-            max=torch.tensor(90.0, dtype=torch.float32),
+            min=torch.tensor(-80.0, dtype=torch.float32),
+            max=torch.tensor(80.0, dtype=torch.float32),
         )
         eps = 1e-5
         shrunk_roll = (roll * shrunk_yaw) / (shrunk_yaw + eps)

@@ -130,6 +130,20 @@ sor4onnx \
 --mode outputs
 
 
+sbi4onnx \
+--input_onnx_file_path shrunk_whenet.onnx \
+--output_onnx_file_path shrunk_whenet_N.onnx \
+--initialization_character_string N
+
+sbi4onnx \
+--input_onnx_file_path shrunk_synergynet.onnx \
+--output_onnx_file_path shrunk_synergynet_N.onnx \
+--initialization_character_string N
+
+
+
+
+
 ############ SynergyNet shrink
 snc4onnx \
 --input_onnx_file_paths synergynet_Nx3x224x224.onnx shrunk_synergynet_N.onnx \
