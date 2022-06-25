@@ -33,8 +33,12 @@ https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-
 - INPUTS: `Float32 [N,3,224,224]`
 - OUTPUTS: `Float32 [N,3]`, `[Yaw,Roll,Pitch]`
 
-![pinheadpose_1x3x224x224 onnx](https://user-images.githubusercontent.com/33194443/174504855-bf03e294-c9c9-477d-9faf-07b3d0393463.png)
+<details><summary>Click to expand</summary><div>
 
+  ![pinheadpose_1x3x224x224 onnx](https://user-images.githubusercontent.com/33194443/174504855-bf03e294-c9c9-477d-9faf-07b3d0393463.png)
+
+</div></details>
+  
 ## 5. References
 1. https://github.com/choyingw/SynergyNet
 2. https://github.com/thohemp/6DRepNet
