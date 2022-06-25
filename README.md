@@ -1,20 +1,20 @@
 # DMHead
 Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detection.
 
-## ToDo
-https://github.com/choyingw/SynergyNet
+## 1. Summary
+- **`[Front side]`** Wearing a mask mode - 6DRepNet
 
-- MobileNetV2 backbone - not retrained
+  ![icon_design drawio (12)](https://user-images.githubusercontent.com/33194443/174622614-bc67a307-88df-4577-a1da-daa37c57eeb9.png)
+  ![image](https://user-images.githubusercontent.com/33194443/175760351-bd8d2e61-bb49-48f3-8023-c45c12cbd800.png)
 
+- **`[Front side]`** Not wearing a mask mode - SynergyNet
+
+  ![icon_design drawio (14)](https://user-images.githubusercontent.com/33194443/175760025-b359e1d2-ac16-456e-8cf6-2c58514fbc7c.png)
   ![image](https://user-images.githubusercontent.com/33194443/174690800-272e5a06-c932-414f-8397-861d7d6284d0.png)
 
-  ![image](https://user-images.githubusercontent.com/33194443/174690567-4a684857-2e87-47ca-852f-525a8b318856.png)　![image](https://user-images.githubusercontent.com/33194443/174690653-af79b004-04c7-4106-ae94-23f9b1323e93.png)
+- **`[Rear side]`** WHENet
 
-
-
-
-## 1. Summary
-![icon_design drawio (12)](https://user-images.githubusercontent.com/33194443/174622614-bc67a307-88df-4577-a1da-daa37c57eeb9.png)
+  ![image](https://user-images.githubusercontent.com/33194443/175760218-4e61da30-71b6-4d2a-8ca4-ddc4c2ec5df0.png)
 
 ## 2. Atmosphere
 https://user-images.githubusercontent.com/33194443/174620267-73c1d26f-796f-40c7-a751-41297b501e77.mp4
@@ -35,7 +35,12 @@ https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-
 
 ![pinheadpose_1x3x224x224 onnx](https://user-images.githubusercontent.com/33194443/174504855-bf03e294-c9c9-477d-9faf-07b3d0393463.png)
 
-## 5. Citation
+## 5. References
+1. https://github.com/choyingw/SynergyNet
+2. https://github.com/thohemp/6DRepNet
+3. https://github.com/Ascend-Research/HeadPoseEstimation-WHENet
+
+## 6. Citation
 ```
 @misc{https://doi.org/10.48550/arxiv.2005.10353,
     doi = {10.48550/ARXIV.2005.10353},
@@ -59,8 +64,8 @@ https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-
 ```
 @INPROCEEDINGS{wu2021synergy,
   author={Wu, Cho-Ying and Xu, Qiangeng and Neumann, Ulrich},
-  booktitle={2021 International Conference on 3D Vision (3DV)}, 
-  title={Synergy between 3DMM and 3D Landmarks for Accurate 3D Facial Geometry}, 
+  booktitle={2021 International Conference on 3D Vision (3DV)},
+  title={Synergy between 3DMM and 3D Landmarks for Accurate 3D Facial Geometry},
   year={2021}
 }
 ```
