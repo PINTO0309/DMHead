@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torchvision as tv
 import numpy as np
 
 class Model(nn.Module):
