@@ -14,10 +14,8 @@ class Model(nn.Module):
         pitch = x[:,2,:]
         shrunk_yaw = torch.clip(
             yaw,
-            # min=torch.tensor(-90.0, dtype=torch.float32),
-            # max=torch.tensor(90.0, dtype=torch.float32),
-            min=torch.tensor(-75.0, dtype=torch.float32),
-            max=torch.tensor(75.0, dtype=torch.float32),
+            min=torch.tensor(-90.0, dtype=torch.float32),
+            max=torch.tensor(90.0, dtype=torch.float32),
         )
         eps = 1e-5
         shrunk_roll = (roll * shrunk_yaw) / (shrunk_yaw + eps)
@@ -30,7 +28,7 @@ if __name__ == "__main__":
 
     import onnx
     from onnxsim import simplify
-    MODEL = f'shrunk_6drepnet'
+    MODEL = f'shrunk_synergynet'
     onnx_file = f"{MODEL}.onnx"
 
     x = torch.randn(1, 3)
@@ -41,7 +39,7 @@ if __name__ == "__main__":
         f=onnx_file,
         opset_version=11,
         input_names = ['shrunk_input'],
-        output_names=['6drepnet_shrunk_output'],
+        output_names=['synergynet_shrunk_output'],
     )
     model_onnx1 = onnx.load(onnx_file)
     model_onnx1 = onnx.shape_inference.infer_shapes(model_onnx1)

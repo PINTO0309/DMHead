@@ -8,8 +8,8 @@ class Model(nn.Module):
         super(Model, self).__init__()
 
     def forward(self, x):
-        # shrink = nn.Hardshrink(lambd=90)
-        shrink = nn.Hardshrink(lambd=75)
+        shrink = nn.Hardshrink(lambd=90)
+        # shrink = nn.Hardshrink(lambd=75)
         x = x[..., np.newaxis]
         yaw = x[:,0,:]
         roll = x[:,1,:]
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         f=onnx_file,
         opset_version=11,
         input_names = ['shrunk_input'],
-        output_names=['shrunk_output'],
+        output_names=['whenet_shrunk_output'],
     )
     model_onnx1 = onnx.load(onnx_file)
     model_onnx1 = onnx.shape_inference.infer_shapes(model_onnx1)

@@ -1,6 +1,7 @@
 
 import cv2
 import time
+import math
 import argparse
 import onnxruntime
 import numpy as np
@@ -9,6 +10,8 @@ from math import cos, sin
 
 def draw_axis(img, yaw, pitch, roll, tdx=None, tdy=None, size=100):
     # Referenced from HopeNet https://github.com/natanielruiz/deep-head-pose
+    if math.isnan(yaw) or math.isnan(pitch) or math.isnan(roll):
+        return img
     pitch = pitch * np.pi / 180
     yaw = -(yaw * np.pi / 180)
     roll = roll * np.pi / 180
@@ -56,9 +59,17 @@ def main(args):
     yolov4_head_W = yolov4_head.get_inputs()[0].shape[3]
 
     # DMHead
+    model_file_path = ''
     dmhead_input_name = None
+    mask_or_nomask = args.mask_or_nomask
+
+    if mask_or_nomask == 'mask':
+        model_file_path = 'dmhead_mask_Nx3x224x224.onnx'
+    elif mask_or_nomask == 'nomask':
+        model_file_path = 'dmhead_nomask_Nx3x224x224.onnx'
+
     dmhead = onnxruntime.InferenceSession(
-        path_or_bytes=f'dmhead_Nx3x224x224.onnx',
+        path_or_bytes=model_file_path,
         providers=[
             (
                 'TensorrtExecutionProvider', {
@@ -139,6 +150,7 @@ def main(args):
                 x_max = min(resized_frame.shape[1], x_max + abs(x_min - x_max) / 5)
                 x_max = min(x_max, resized_frame.shape[1])
                 croped_frame = resized_frame[int(y_min):int(y_max), int(x_min):int(x_max)]
+
                 # h,w -> 224,224
                 croped_resized_frame = cv2.resize(croped_frame, (dmhead_W, dmhead_H))
                 # bgr --> rgb
@@ -247,16 +259,26 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--device",
+        '--device',
         type=str,
         default='0',
         help='Path of the mp4 file or device number of the USB camera. Default: 0',
     )
     parser.add_argument(
-        "--height_width",
+        '--height_width',
         type=str,
         default='480x640',
         help='{H}x{W}. Default: 480x640',
+    )
+    parser.add_argument(
+        '--mask_or_nomask',
+        type=str,
+        default='mask',
+        choices=[
+            'mask',
+            'nomask',
+        ],
+        help='Select either a model that provides high accuracy when wearing a mask or a model that provides high accuracy when not wearing a mask.',
     )
     args = parser.parse_args()
     main(args)
