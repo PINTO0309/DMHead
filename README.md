@@ -16,12 +16,22 @@ Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detect
 
   ![image](https://user-images.githubusercontent.com/33194443/175760218-4e61da30-71b6-4d2a-8ca4-ddc4c2ec5df0.png)
 
-## 2. Atmosphere
+## 2. Inference Test
+
+```bash
+wget https://github.com/PINTO0309/DMHead/releases/download/1.1.0/yolov4_headdetection_480x640_post.onnx
+wget https://github.com/PINTO0309/DMHead/releases/download/1.1.0/dmhead_mask_Nx3x224x224.onnx
+wget https://github.com/PINTO0309/DMHead/releases/download/1.1.0/dmhead_nomask_Nx3x224x224.onnx
+
+python demo_video.py
+```
+
+## 3. Atmosphere
 https://user-images.githubusercontent.com/33194443/174620267-73c1d26f-796f-40c7-a751-41297b501e77.mp4
 
 https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-a38c-768dabe33c1f.mp4
 
-## 3. Benchmark
+## 4. Benchmark
 - Trained on 300W-LP (Custom, Mask-wearing face image augmentation)
 - Test on AFLW2000
   - June 20, 2022
@@ -29,7 +39,7 @@ https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-
     Yaw: 3.6129, Pitch: 5.5801, Roll: 3.8468, MAE: 4.3466
     ```
 
-## 4. Model Structure
+## 5. Model Structure
 - INPUTS: `Float32 [N,3,224,224]`
 - OUTPUTS: `Float32 [N,3]`, `[Yaw,Roll,Pitch]`
 
@@ -39,12 +49,12 @@ https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-
 
 </div></details>
   
-## 5. References
+## 6. References
 1. https://github.com/choyingw/SynergyNet
 2. https://github.com/thohemp/6DRepNet
 3. https://github.com/Ascend-Research/HeadPoseEstimation-WHENet
 
-## 6. Citation
+## 7. Citation
 ```
 @misc{https://doi.org/10.48550/arxiv.2005.10353,
     doi = {10.48550/ARXIV.2005.10353},
