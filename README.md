@@ -38,6 +38,10 @@ https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-
     ```
     Yaw: 3.6129, Pitch: 5.5801, Roll: 3.8468, MAE: 4.3466
     ```
+  - July 3, 2022
+    ```
+    Yaw: 3.3725, Pitch: 5.0596, Roll: 3.5692, MAE: 4.0004
+    ```
 
 ## 5. Model Structure
 - INPUTS: `Float32 [N,3,224,224]`
