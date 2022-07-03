@@ -41,7 +41,7 @@ https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-
     ```
   - July 3, 2022
     ```
-    Yaw: 3.3417, Pitch: 5.0580, Roll: 3.5549, MAE: 3.9848
+    Yaw: 3.3346, Pitch: 5.0004, Roll: 3.5381, MAE: 3.9577
     ```
 
 ## 5. Model Structure
