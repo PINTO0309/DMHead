@@ -27,7 +27,6 @@ python demo_video.py
 ```
 
 ```bash
-usage:
 demo_video.py \
 [-h] \
 [--device DEVICE] \
