@@ -27,7 +27,7 @@ python demo_video.py
 ```
 
 ```bash
-demo_video.py \
+python demo_video.py \
 [-h] \
 [--device DEVICE] \
 [--height_width HEIGHT_WIDTH] \
