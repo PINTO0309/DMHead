@@ -26,6 +26,32 @@ wget https://github.com/PINTO0309/DMHead/releases/download/1.1.1/dmhead_nomask_N
 python demo_video.py
 ```
 
+```bash
+usage:
+demo_video.py \
+[-h] \
+[--device DEVICE] \
+[--height_width HEIGHT_WIDTH] \
+[--mask_or_nomask {mask,nomask}]
+
+optional arguments:
+  -h, --help
+    Show this help message and exit.
+
+  --device DEVICE
+    Path of the mp4 file or device number of the USB camera.
+    Default: 0
+
+  --height_width HEIGHT_WIDTH
+    {H}x{W}.
+    Default: 480x640
+
+  --mask_or_nomask {mask,nomask}
+    Select either a model that provides high accuracy when wearing a mask or
+    a model that provides high accuracy when not wearing a mask.
+    Default: mask
+```
+
 ## 3. Atmosphere
 https://user-images.githubusercontent.com/33194443/174620267-73c1d26f-796f-40c7-a751-41297b501e77.mp4
 
