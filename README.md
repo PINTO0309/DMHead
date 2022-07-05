@@ -64,7 +64,7 @@ https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-
     ```
     Yaw: 3.6129, Pitch: 5.5801, Roll: 3.8468, MAE: 4.3466
     ```
-  - July 3, 2022
+  - July 3, 2022 `_epoch_321.pth`
     ```
     Yaw: 3.3346, Pitch: 5.0004, Roll: 3.5381, MAE: 3.9577
     ```
