@@ -52,9 +52,17 @@ optional arguments:
 ```
 
 ## 3. Atmosphere
-https://user-images.githubusercontent.com/33194443/174620267-73c1d26f-796f-40c7-a751-41297b501e77.mp4
+- June 20, 2022 - MAE: 4.3466
 
-https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-a38c-768dabe33c1f.mp4
+  https://user-images.githubusercontent.com/33194443/174620267-73c1d26f-796f-40c7-a751-41297b501e77.mp4
+
+- July 3, 2022 - MAE: 3.9577
+
+  https://user-images.githubusercontent.com/33194443/177670677-a3bd5f49-d713-4210-83ab-ebabfbc82e12.mp4
+
+  https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-a38c-768dabe33c1f.mp4
+
+
 
 ## 4. Benchmark
 - 6DRepNet
