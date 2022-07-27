@@ -91,6 +91,7 @@ optional arguments:
 1. https://github.com/choyingw/SynergyNet
 2. https://github.com/thohemp/6DRepNet
 3. https://github.com/Ascend-Research/HeadPoseEstimation-WHENet
+4. https://github.com/PINTO0309/Face_Mask_Augmentation
 
 ## 7. Citation
 ```
