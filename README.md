@@ -76,6 +76,10 @@ optional arguments:
     ```
     Yaw: 3.3346, Pitch: 5.0004, Roll: 3.5381, MAE: 3.9577
     ```
+  - August 15, 2022
+    ```
+    Yaw: 3.3624, Pitch: 4.9274, Roll: 3.4029, MAE: 3.8976
+    ```
 
 ## 5. Model Structure
 - INPUTS: `Float32 [N,3,224,224]`
