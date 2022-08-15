@@ -66,6 +66,10 @@ optional arguments:
 
 ## 4. Benchmark
 - 6DRepNet
+- Official Paper FineTuned
+    ```
+    Yaw: 3.6266, Pitch: 4.9066, Roll: 3.3734, MAE: 3.9688
+    ```
 - Trained on 300W-LP (Custom, Mask-wearing face image augmentation)
 - Test on AFLW2000
   - June 20, 2022
