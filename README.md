@@ -78,7 +78,7 @@ optional arguments:
     ```
   - August 15, 2022
     ```
-    Yaw: 3.3703, Pitch: 4.9096, Roll: 3.4048, MAE: 3.8949
+    Yaw: 3.3405, Pitch: 4.8965, Roll: 3.3888, MAE: 3.8753
     ```
 
 ## 5. Model Structure
