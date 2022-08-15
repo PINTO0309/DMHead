@@ -6,3 +6,5 @@
 *.MOV
 *.engine
 *.profile
+saved_model/
+dmhead_mask_*/
