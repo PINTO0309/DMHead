@@ -19,24 +19,70 @@ Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detect
 ## 2. Inference Test
 
 ```bash
-wget https://github.com/PINTO0309/DMHead/releases/download/1.1.0/yolov4_headdetection_480x640_post.onnx
-wget https://github.com/PINTO0309/DMHead/releases/download/1.1.0/dmhead_mask_Nx3x224x224.onnx
-wget https://github.com/PINTO0309/DMHead/releases/download/1.1.0/dmhead_nomask_Nx3x224x224.onnx
+wget https://github.com/PINTO0309/DMHead/releases/download/1.1.1/yolov4_headdetection_480x640_post.onnx
+wget https://github.com/PINTO0309/DMHead/releases/download/1.1.1/dmhead_mask_Nx3x224x224.onnx
+wget https://github.com/PINTO0309/DMHead/releases/download/1.1.1/dmhead_nomask_Nx3x224x224.onnx
 
 python demo_video.py
 ```
 
-## 3. Atmosphere
-https://user-images.githubusercontent.com/33194443/174620267-73c1d26f-796f-40c7-a751-41297b501e77.mp4
+```bash
+python demo_video.py \
+[-h] \
+[--device DEVICE] \
+[--height_width HEIGHT_WIDTH] \
+[--mask_or_nomask {mask,nomask}]
 
-https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-a38c-768dabe33c1f.mp4
+optional arguments:
+  -h, --help
+    Show this help message and exit.
+
+  --device DEVICE
+    Path of the mp4 file or device number of the USB camera.
+    Default: 0
+
+  --height_width HEIGHT_WIDTH
+    {H}x{W}.
+    Default: 480x640
+
+  --mask_or_nomask {mask,nomask}
+    Select either a model that provides high accuracy when wearing a mask or
+    a model that provides high accuracy when not wearing a mask.
+    Default: mask
+```
+
+## 3. Atmosphere
+- June 20, 2022 - MAE: 4.3466
+
+  https://user-images.githubusercontent.com/33194443/174620267-73c1d26f-796f-40c7-a751-41297b501e77.mp4
+
+- July 3, 2022 - MAE: 3.9577
+
+  https://user-images.githubusercontent.com/33194443/177670677-a3bd5f49-d713-4210-83ab-ebabfbc82e12.mp4
+
+  https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-a38c-768dabe33c1f.mp4
+
+
 
 ## 4. Benchmark
+- 6DRepNet
+- Official Paper FineTuned
+    ```
+    Yaw: 3.6266, Pitch: 4.9066, Roll: 3.3734, MAE: 3.9688
+    ```
 - Trained on 300W-LP (Custom, Mask-wearing face image augmentation)
 - Test on AFLW2000
   - June 20, 2022
     ```
     Yaw: 3.6129, Pitch: 5.5801, Roll: 3.8468, MAE: 4.3466
+    ```
+  - July 3, 2022 `_epoch_321.pth`
+    ```
+    Yaw: 3.3346, Pitch: 5.0004, Roll: 3.5381, MAE: 3.9577
+    ```
+  - August 15, 2022
+    ```
+    Yaw: 3.3193, Pitch: 4.9063, Roll: 3.3687, MAE: 3.8648
     ```
 
 ## 5. Model Structure
@@ -53,6 +99,7 @@ https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-
 1. https://github.com/choyingw/SynergyNet
 2. https://github.com/thohemp/6DRepNet
 3. https://github.com/Ascend-Research/HeadPoseEstimation-WHENet
+4. https://github.com/PINTO0309/Face_Mask_Augmentation
 
 ## 7. Citation
 ```
