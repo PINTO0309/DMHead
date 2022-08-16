@@ -29,9 +29,9 @@ Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detect
 ## 2. Inference Test
 
 ```bash
-wget https://github.com/PINTO0309/DMHead/releases/download/1.1.1/yolov4_headdetection_480x640_post.onnx
-wget https://github.com/PINTO0309/DMHead/releases/download/1.1.1/dmhead_mask_Nx3x224x224.onnx
-wget https://github.com/PINTO0309/DMHead/releases/download/1.1.1/dmhead_nomask_Nx3x224x224.onnx
+wget https://github.com/PINTO0309/DMHead/releases/download/1.1.2/yolov4_headdetection_480x640_post.onnx
+wget https://github.com/PINTO0309/DMHead/releases/download/1.1.2/dmhead_mask_Nx3x224x224.onnx
+wget https://github.com/PINTO0309/DMHead/releases/download/1.1.2/dmhead_nomask_Nx3x224x224.onnx
 
 python demo_video.py
 ```
