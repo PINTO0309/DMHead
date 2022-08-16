@@ -66,6 +66,7 @@ optional arguments:
 
   https://user-images.githubusercontent.com/33194443/184782685-52aa9fe3-d086-4104-8ea1-00c4a7418142.mp4
 
+  https://user-images.githubusercontent.com/33194443/184784102-089a82b9-765a-4431-bf33-43370b5c8174.mp4
 
 ## 4. Benchmark
 - 6DRepNet
