@@ -2,14 +2,13 @@
 Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detection. All pre-processing and post-processing are fused together, allowing end-to-end processing in a single inference.
 
 ## 1. Summary
+![icon_design drawio (12)](https://user-images.githubusercontent.com/33194443/174622614-bc67a307-88df-4577-a1da-daa37c57eeb9.png)
 - **`[Front side]`** Wearing a mask mode - 6DRepNet (RepVGG-B1g2)
 
-  ![175760025-b359e1d2-ac16-456e-8cf6-2c58514fbc7c](https://user-images.githubusercontent.com/33194443/184787452-64f24007-d728-455c-b3b2-58c86e473fb9.png)
-  ![175760351-bd8d2e61-bb49-48f3-8023-c45c12cbd800](https://user-images.githubusercontent.com/33194443/184787662-58eaf4b4-101e-4f60-bb21-f8cfd6e80738.png)
+  ![image](https://user-images.githubusercontent.com/33194443/175760351-bd8d2e61-bb49-48f3-8023-c45c12cbd800.png)
 
 - **`[Front side]`** Not wearing a mask mode - SynergyNet (MobileNetV2)
 
-  ![175760025-b359e1d2-ac16-456e-8cf6-2c58514fbc7c](https://user-images.githubusercontent.com/33194443/184787452-64f24007-d728-455c-b3b2-58c86e473fb9.png)
   ![image](https://user-images.githubusercontent.com/33194443/174690800-272e5a06-c932-414f-8397-861d7d6284d0.png)
 
 - **`[Rear side]`** WHENet
