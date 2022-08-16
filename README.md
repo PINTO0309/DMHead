@@ -7,6 +7,11 @@ Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detect
 
   ![image](https://user-images.githubusercontent.com/33194443/175760351-bd8d2e61-bb49-48f3-8023-c45c12cbd800.png)
 
+  - Fine tune
+    ```
+    Yaw: 3.3193, Pitch: 4.9063, Roll: 3.3687, MAE: 3.8648
+    ```
+
 - **`[Front side]`** Not wearing a mask mode - SynergyNet (MobileNetV2)
 
   ![image](https://user-images.githubusercontent.com/33194443/174690800-272e5a06-c932-414f-8397-861d7d6284d0.png)
