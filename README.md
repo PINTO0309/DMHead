@@ -2,7 +2,7 @@
 Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detection. All pre-processing and post-processing are fused together, allowing end-to-end processing in a single inference.
 
 ## 1. Summary
-![icon_design drawio (12)](https://user-images.githubusercontent.com/33194443/174622614-bc67a307-88df-4577-a1da-daa37c57eeb9.png)
+![icon_design drawio (14)](https://user-images.githubusercontent.com/33194443/175760025-b359e1d2-ac16-456e-8cf6-2c58514fbc7c.png)
 - **`[Front side]`** Wearing a mask mode - 6DRepNet (RepVGG-B1g2)
 
   ![image](https://user-images.githubusercontent.com/33194443/175760351-bd8d2e61-bb49-48f3-8023-c45c12cbd800.png)
