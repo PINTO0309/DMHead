@@ -1,3 +1,5 @@
+ACTIVATION_ANGLE=90
+
 ############ Add
 OP=Add
 LOWEROP=${OP,,}
@@ -15,7 +17,7 @@ sog4onnx \
 
 ############ WHENet shrink
 snc4onnx \
---input_onnx_file_paths whenet_1x3x224x224_prepost.onnx shrunk_whenet.onnx \
+--input_onnx_file_paths whenet_1x3x224x224_prepost.onnx shrunk_whenet_${ACTIVATION_ANGLE}.onnx \
 --srcop_destop yaw_roll_pitch shrunk_input \
 --output_onnx_file_path whenet_prepost_disable_front_side_detection_1x3x224x224.onnx
 
@@ -23,7 +25,7 @@ onnxsim whenet_prepost_disable_front_side_detection_1x3x224x224.onnx whenet_prep
 
 ############ 6DRepNet shrink
 snc4onnx \
---input_onnx_file_paths sixdrepnet_300w_lp_maskplus_prepost_1x3x224x224.onnx shrunk_6drepnet.onnx \
+--input_onnx_file_paths sixdrepnet_300w_lp_maskplus_prepost_1x3x224x224.onnx shrunk_6drepnet_${ACTIVATION_ANGLE}.onnx \
 --srcop_destop output_6drep_yaw_roll_pitch shrunk_input \
 --output_onnx_file_path sixdrepnet_300w_lp_maskplus_prepost_disable_rear_side_detection_1x3x224x224.onnx
 
@@ -37,13 +39,26 @@ snc4onnx \
 --op_prefixes_after_merging whenet 6drepnet \
 --output_onnx_file_path dmhead_merged.onnx
 
-############ pinheadpose_merged + Add
+############ outputs rename
+sor4onnx \
+--input_onnx_file_path dmhead_merged.onnx \
+--old_new "whenet_whenet_" "whenet_" \
+--mode outputs \
+--output_onnx_file_path dmhead_merged.onnx
+
+sor4onnx \
+--input_onnx_file_path dmhead_merged.onnx \
+--old_new "6drepnet_6drepnet_" "6drepnet_" \
+--mode outputs \
+--output_onnx_file_path dmhead_merged.onnx
+
+############ dmhead_merged + Add
 snc4onnx \
 --input_onnx_file_paths dmhead_merged.onnx Add11_merged_add.onnx \
 --srcop_destop whenet_shrunk_output whenet_a 6drepnet_shrunk_output 6drepnet_b \
---output_onnx_file_path dmhead_1x3x224x224.onnx
+--output_onnx_file_path dmhead_mask_1x3x224x224.onnx
 
-onnxsim dmhead_1x3x224x224.onnx dmhead_1x3x224x224.onnx
+onnxsim dmhead_mask_1x3x224x224.onnx dmhead_mask_1x3x224x224.onnx
 
 
 
@@ -66,14 +81,14 @@ sog4onnx \
 
 ############ WHENet shrink
 snc4onnx \
---input_onnx_file_paths whenet_Nx3x224x224_prepost.onnx shrunk_whenet_N.onnx \
+--input_onnx_file_paths whenet_Nx3x224x224_prepost.onnx shrunk_whenet_N_${ACTIVATION_ANGLE}.onnx \
 --srcop_destop yaw_roll_pitch shrunk_input \
 --output_onnx_file_path whenet_prepost_disable_front_side_detection_Nx3x224x224.onnx
 
 
 ############ 6DRepNet shrink
 snc4onnx \
---input_onnx_file_paths sixdrepnet_300w_lp_maskplus_prepost_Nx3x224x224.onnx shrunk_6drepnet_N.onnx \
+--input_onnx_file_paths sixdrepnet_300w_lp_maskplus_prepost_Nx3x224x224.onnx shrunk_6drepnet_N_${ACTIVATION_ANGLE}.onnx \
 --srcop_destop output_6drep_yaw_roll_pitch shrunk_input \
 --output_onnx_file_path sixdrepnet_300w_lp_maskplus_prepost_disable_rear_side_detection_Nx3x224x224.onnx
 
@@ -86,11 +101,27 @@ snc4onnx \
 --op_prefixes_after_merging whenet 6drepnet \
 --output_onnx_file_path dmhead_merged_N.onnx
 
-############ pinheadpose_merged + Add
+############ outputs rename
+sor4onnx \
+--input_onnx_file_path dmhead_merged_N.onnx \
+--old_new "whenet_whenet_" "whenet_" \
+--mode outputs \
+--output_onnx_file_path dmhead_merged_N.onnx
+
+sor4onnx \
+--input_onnx_file_path dmhead_merged_N.onnx \
+--old_new "6drepnet_6drepnet_" "6drepnet_" \
+--mode outputs \
+--output_onnx_file_path dmhead_merged_N.onnx
+
+############ dmhead_merged + Add
 snc4onnx \
 --input_onnx_file_paths dmhead_merged_N.onnx Add11_merged_add_N.onnx \
 --srcop_destop whenet_shrunk_output whenet_a 6drepnet_shrunk_output 6drepnet_b \
---output_onnx_file_path dmhead_Nx3x224x224.onnx
+--output_onnx_file_path dmhead_mask_Nx3x224x224.onnx
+
+onnxsim dmhead_mask_Nx3x224x224.onnx dmhead_mask_Nx3x224x224.onnx
+
 
 
 
@@ -110,12 +141,9 @@ sog4onnx \
 
 ############ WHENet shrink
 snc4onnx \
---input_onnx_file_paths whenet_Nx3x224x224_prepost.onnx shrunk_whenet_N.onnx \
+--input_onnx_file_paths whenet_Nx3x224x224_prepost.onnx shrunk_whenet_N_${ACTIVATION_ANGLE}.onnx \
 --srcop_destop yaw_roll_pitch shrunk_input \
 --output_onnx_file_path whenet_prepost_disable_front_side_detection_Nx3x224x224.onnx
-
-
-
 
 sor4onnx \
 --input_onnx_file_path synergynet_1x3x224x224.onnx \
@@ -146,7 +174,7 @@ sbi4onnx \
 
 ############ SynergyNet shrink
 snc4onnx \
---input_onnx_file_paths synergynet_Nx3x224x224.onnx shrunk_synergynet_N.onnx \
+--input_onnx_file_paths synergynet_Nx3x224x224.onnx shrunk_synergynet_N_${ACTIVATION_ANGLE}.onnx \
 --srcop_destop output_synergy_yaw_roll_pitch shrunk_input \
 --output_onnx_file_path synergynet_prepost_disable_rear_side_detection_Nx3x224x224.onnx
 
@@ -172,7 +200,7 @@ sor4onnx \
 --mode outputs
 
 
-############ pinheadpose_merged + Add
+############ dmhead_merged + Add
 snc4onnx \
 --input_onnx_file_paths dmhead_merged_N.onnx Add11_merged_add_N.onnx \
 --srcop_destop whenet_shrunk_output whenet_a synergynet_shrunk_output synergynet_b \

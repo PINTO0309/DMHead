@@ -7,8 +7,7 @@ class Model(nn.Module):
         super(Model, self).__init__()
 
     def forward(self, x):
-        shrink = nn.Hardshrink(lambd=80)
-        # shrink = nn.Hardshrink(lambd=75)
+        shrink = nn.Hardshrink(lambd=90)
         x = x[..., np.newaxis]
         yaw = x[:,0,:]
         roll = x[:,1,:]
