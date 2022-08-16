@@ -34,7 +34,7 @@ class YOLOv7ONNX(object):
             ONNX file path for YOLOv7
         class_score_th: Optional[float]
         class_score_th: Optional[float]
-            Score threshold. Default: 0.30
+            Score threshold. Default: 0.20
         providers: Optional[List]
             Name of onnx execution providers
             Default:
