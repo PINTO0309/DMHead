@@ -5,7 +5,9 @@ Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detect
 ![icon_design drawio (14)](https://user-images.githubusercontent.com/33194443/175760025-b359e1d2-ac16-456e-8cf6-2c58514fbc7c.png)
 - **`[Front side]`** Wearing a mask mode - 6DRepNet (RepVGG-B1g2)
 
-  ![image](https://user-images.githubusercontent.com/33194443/175760351-bd8d2e61-bb49-48f3-8023-c45c12cbd800.png)
+  - Paper
+  
+    ![image](https://user-images.githubusercontent.com/33194443/175760351-bd8d2e61-bb49-48f3-8023-c45c12cbd800.png)
 
   - Fine tune
     ```
@@ -14,11 +16,15 @@ Dual model head pose estimation. Fusion of SOTA models. 360° 6D HeadPose detect
 
 - **`[Front side]`** Not wearing a mask mode - SynergyNet (MobileNetV2)
 
-  ![image](https://user-images.githubusercontent.com/33194443/174690800-272e5a06-c932-414f-8397-861d7d6284d0.png)
+  - Paper
+
+    ![image](https://user-images.githubusercontent.com/33194443/174690800-272e5a06-c932-414f-8397-861d7d6284d0.png)
 
 - **`[Rear side]`** WHENet
 
-  ![image](https://user-images.githubusercontent.com/33194443/175760218-4e61da30-71b6-4d2a-8ca4-ddc4c2ec5df0.png)
+  - Paper
+
+    ![image](https://user-images.githubusercontent.com/33194443/175760218-4e61da30-71b6-4d2a-8ca4-ddc4c2ec5df0.png)
 
 ## 2. Inference Test
 
