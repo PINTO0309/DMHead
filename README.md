@@ -62,6 +62,9 @@ optional arguments:
 
   https://user-images.githubusercontent.com/33194443/175073709-e9c43655-27a9-4760-a38c-768dabe33c1f.mp4
 
+- August 15, 2022 - MAE: 3.8648
+
+  https://user-images.githubusercontent.com/33194443/184782685-52aa9fe3-d086-4104-8ea1-00c4a7418142.mp4
 
 
 ## 4. Benchmark
