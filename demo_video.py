@@ -28,6 +28,7 @@ class YOLOv7ONNX(object):
         ],
     ):
         """YOLOv7ONNX
+
         Parameters
         ----------
         model_path: Optional[str]
@@ -79,10 +80,12 @@ class YOLOv7ONNX(object):
         image: np.ndarray,
     ) -> Tuple[np.ndarray, np.ndarray]:
         """YOLOv7ONNX
+
         Parameters
         ----------
         image: np.ndarray
             Entire image
+
         Returns
         -------
         face_boxes: np.ndarray
@@ -120,6 +123,7 @@ class YOLOv7ONNX(object):
         swap: Optional[Tuple[int,int,int]] = (2, 0, 1),
     ) -> np.ndarray:
         """__preprocess
+
         Parameters
         ----------
         image: np.ndarray
@@ -129,6 +133,7 @@ class YOLOv7ONNX(object):
             CHW to HWC: (1,2,0)
             HWC to HWC: (0,1,2)
             CHW to CHW: (0,1,2)
+
         Returns
         -------
         resized_image: np.ndarray
@@ -159,6 +164,7 @@ class YOLOv7ONNX(object):
         boxes: np.ndarray,
     ) -> Tuple[np.ndarray, np.ndarray]:
         """__postprocess
+
         Parameters
         ----------
         image: np.ndarray
@@ -167,6 +173,7 @@ class YOLOv7ONNX(object):
             float32[N, 1]
         boxes: np.ndarray
             int64[N, 6]
+
         Returns
         -------
         faceboxes: np.ndarray
