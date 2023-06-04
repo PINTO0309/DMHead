@@ -105,6 +105,7 @@ optional arguments:
 3. https://github.com/Ascend-Research/HeadPoseEstimation-WHENet
 4. https://github.com/PINTO0309/Face_Mask_Augmentation
 5. https://github.com/PINTO0309/PINTO_model_zoo/tree/main/383_DirectMHP/post_process_gen_tools
+6. https://github.com/PINTO0309/PINTO_model_zoo/tree/main/383_DirectMHP
 
 ## 7. Citation
 ```
